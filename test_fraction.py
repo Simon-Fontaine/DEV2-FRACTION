@@ -52,6 +52,19 @@ class FractionTestCase(unittest.TestCase):
         self.assertEqual(Fraction(-7, 2).as_mixed_number(), "-4 - 1/2")
         self.assertEqual(Fraction(2, 1).as_mixed_number(), "2")
 
+    def test_mixed_number_edge_cases(self):
+        f = Fraction(3, 3)
+        self.assertEqual(f.as_mixed_number(), "1")
+
+    def test_equality_edge_cases(self):
+        f = Fraction(1, 2)
+        with self.assertRaises(TypeError):
+            f == "1/2"
+
+    def test_adjacent_to_with_integer(self):
+        f = Fraction(1, 1)
+        self.assertTrue(f.is_adjacent_to(2))
+
     def test_arithmetic_operations(self):
         """Test arithmetic operations"""
         f1 = Fraction(1, 2)
